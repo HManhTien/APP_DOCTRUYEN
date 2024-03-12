@@ -14,7 +14,7 @@
         android:textColor="#1296F3"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:text="Đăng Nhập"
+        android:text="Đăng ký"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" ></TextView>
     <EditText
