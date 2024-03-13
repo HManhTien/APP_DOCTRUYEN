@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.material.navigation.NavigationView;
@@ -37,6 +39,10 @@ import java.util.ArrayList;
 import vn.edu.btl.adapter.adaptertruyen;
 import vn.edu.btl.model.Truyen;
 import vn.edu.btl.database.database;
+import vn.edu.btl.model.chuyenmuc;
+import vn.edu.btl.model.taikhoan;
+import vn.edu.btl.adapter.adapterchuyenmuc;
+import vn.edu.btl.adapter.adapterthongtin;
 
 
 
@@ -50,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
     String email , taikhoan;
 
     ArrayList<Truyen> TruyenArrylist;
+    ArrayList<chuyenmuc> chuyenmucArrylist;
+    ArrayList<taikhoan> taikhoanArrylist;
     adaptertruyen adaptertruyen;
+    adapterchuyenmuc adapterchuyenmuc;
+    adapterthongtin adapterthongtin;
+
 
     database database;
     @Override
@@ -82,6 +93,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        listviewnew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    if(i == 2){
+
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this , "Bạn không có quyền đăng bài ", Toast.LENGTH_LONG).show();
+                        Log.d("TAG","Bạn không có quyền");
+                    }
+                }else if(position == 1){
+                        Intent  intent = new Intent(MainActivity.this , Manthongtin.class);
+                        startActivity(intent);
+                }else if(position == 2){
+                    finish();
+                }
+            }
+        });
     }
 
     private void actionbar() {
@@ -102,8 +133,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> mangquangcao = new ArrayList<>();
 
         //Thêm ảnh vào mảng quảng cáo
-        mangquangcao.add("https://s3.cloud.cmctelecom.vn/tinhte1/2014/03/2432999_tinhte.vn-up-facebook-500.jpg");
-        mangquangcao.add("https://upload.wikimedia.org/wikipedia/commons/e/ea/Moldova_Competitiveness_Project%2C_USAID_Moldova_%2848121769796%29.jpg");
+        mangquangcao.add("https://images2.thanhnien.vn/528068263637045248/2024/1/5/2-17044150071911566958535.jpg");
+        mangquangcao.add("https://mega.com.vn/media/news/1904_top-6-ung-dung-doc-truyen-tranh-3.jpg");
+        mangquangcao.add("https://img-cdn.2game.vn/pictures/xemgame/2015/02/04/conan.jpg");
 
         for(int i = 0 ; i < mangquangcao.size() ; i++)
         {
@@ -150,7 +182,28 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor1.moveToFirst();
         cursor1.close();
+
+        // Thông Tin
+        taikhoanArrylist = new ArrayList<>();
+        taikhoanArrylist.add(new taikhoan(taikhoan, email));
+
+
+        adapterthongtin = new adapterthongtin(this , R.layout.navigation_thongtin,taikhoanArrylist);
+        listviewthongtin.setAdapter(adapterthongtin);
+
+
+        // Chuyen muc
+
+        chuyenmucArrylist = new ArrayList<>();
+        chuyenmucArrylist.add(new chuyenmuc("Bài Đăng " , R.drawable.ic_img));
+        chuyenmucArrylist.add(new chuyenmuc("Thông tin " , R.drawable.ic_img));
+        chuyenmucArrylist.add(new chuyenmuc("Đăng xuất " , R.drawable.ic_img));
+
+        adapterchuyenmuc = new adapterchuyenmuc(this , R.layout.chuyenmuc , chuyenmucArrylist);
+        listviewnew.setAdapter(adapterchuyenmuc);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,8 +215,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu1) {
-            Intent  intent = new Intent(MainActivity.this , Mantimkiem.class);
-            startActivity(intent);
+            Toast.makeText(MainActivity.this , "Lỗi rồi , đừng bấm nữa "  , Toast.LENGTH_LONG).show();
         } else {
 
         }

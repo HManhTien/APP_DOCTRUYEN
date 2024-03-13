@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@drawable/a"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/imgviewtt"
+            android:layout_marginTop="10dp"
+            android:scrollX="10dp"
+            android:src="@drawable/ic_taikoan"
+            android:layout_width="90dp"
+            android:layout_height="80dp">
+        </ImageView>
+        <TextView
+            android:textColor="#ffa"
+            android:textStyle="bold"
+            android:text="--Hoàng Tiến --"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:textColor="#f44336"
+            android:textStyle="bold"
+            android:text="hoangtienvhdh@gmail.com"
+            android:id="@+id/emailngdung"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:textColor="#ffa"
+            android:textStyle="bold"
+            android:text="Online"
+            android:id="@+id/trangthai"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
+
+</LinearLayout>
